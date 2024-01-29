@@ -16,8 +16,6 @@ const Profile = ({ spotify }) => {
         getUser();
     }, [spotify])
 
-    console.log(user);
-
     return (
         <Navbar data-bs-theme="dark" style={{backgroundColor: '#764abc'}}>
             <Container>

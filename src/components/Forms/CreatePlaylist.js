@@ -22,7 +22,7 @@ const CreatePlaylist = ({spotify, setIsCreatingPlaylist}) => {
     };
 
     return (
-        <Form style={{ color:'#ffffff', marginTop:'100px' }}>
+        <Form className='playlist-create-form'>
             <Form.Group className="mb-3">
                 <Form.Control 
                     className="mb-3"
@@ -57,7 +57,7 @@ const CreatePlaylist = ({spotify, setIsCreatingPlaylist}) => {
                     />
                 }
             </Form.Group>
-            <Button style={{backgroundColor: '#a663db'}} onClick={onCreateClick}>
+            <Button onClick={onCreateClick}>
                 Create
             </Button>
         </Form>

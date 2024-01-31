@@ -17,19 +17,19 @@ const Profile = ({ spotify }) => {
     }, [spotify])
 
     return (
-        <Navbar data-bs-theme="dark" style={{backgroundColor: '#764abc'}}>
+        <Navbar data-bs-theme="dark" style={{backgroundColor: '#764abc', height: '56px'}}>
             <Container>
                 <Navbar.Brand>Playlist Builder</Navbar.Brand>
-                <Navbar.Text className="justify-content-end">
+                <Navbar.Text className="justify-content-end" style={{ color: '#ffffff', padding: '0'}}>
                     <Image
                         alt="Profile"
                         src={user.images? user.images[0].url : avatar}
-                        width="30"
-                        height="30"
-                        style={{marginRight: '5px'}}
+                        width="35"
+                        height="35"
+                        style={{marginRight: '10px', objectFit: 'cover'}}
                         roundedCircle
                     />
-                    {user.display_name}
+                    <b>{user.display_name}</b>
                 </Navbar.Text>
             </Container>
         </Navbar>

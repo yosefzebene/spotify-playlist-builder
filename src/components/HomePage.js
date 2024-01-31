@@ -12,13 +12,13 @@ const HomePage = ({ spotifyToken }) => {
     spotify.setAccessToken(spotifyToken);
 
     return (
-        <Container fluid={true} style={{height: '100vh'}}>
+        <Container fluid={true}>
             <Row>
-                <Col style={{padding: 0}}><Profile spotify={spotify} /></Col>
+                <Col style={{padding: 0 }}><Profile spotify={spotify} /></Col>
             </Row>
-            <Row style={{backgroundColor: 'black'}}>
-                <Col><Playlists spotify={spotify} /></Col>
-                <Col><Songs spotify={spotify} /></Col>
+            <Row style={{backgroundColor: '#000000'}}>
+                <Col sm={12} md={true} lg={true}><Playlists spotify={spotify} /></Col>
+                <Col sm={12} md={true} lg={true}><Songs spotify={spotify} /></Col>
             </Row>
         </Container>
     );

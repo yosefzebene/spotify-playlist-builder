@@ -2,8 +2,9 @@ import Stack from 'react-bootstrap/Stack';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import playlistCover from '../assets/playlistCover.jpg'
+import playlistCover from '../assets/playlistCover.jpg';
 import CreatePlaylist from './Forms/CreatePlaylist';
+import './Playlists.css';
 
 const Playlists = ({ spotify }) => {
     const [playlists, setPlaylists] = useState([]);
@@ -49,16 +50,17 @@ const Playlists = ({ spotify }) => {
     };
 
     return (
-        <div style={{padding: '10px 0'}}>
+        // Height needs to be 50vh for mobile
+        <div className='playlists-box'>
             {!isCreatingPlaylist ?
             <>
                 {
                     displayingTracks ? 
-                    <Button onClick={() => setDisplayingTracks(false)} style={{backgroundColor: '#a663db'}}>Back</Button>
+                    <Button onClick={() => setDisplayingTracks(false)}>Back</Button>
                     :
-                    <Button onClick={() => setIsCreatingPlaylist(true)} style={{backgroundColor: '#a663db'}}>Create Playlist</Button>
+                    <Button onClick={() => setIsCreatingPlaylist(true)}>Create Playlist</Button>
                 }
-                <Stack gap={2} style={{padding: '10px 0'}}>
+                <Stack gap={2}>
                     {
                         displayingTracks ?
                         tracks.map(item => {
@@ -73,7 +75,7 @@ const Playlists = ({ spotify }) => {
             </>
             :
             <>
-                <Button onClick={() => setIsCreatingPlaylist(false)} style={{backgroundColor: '#a663db'}}>Cancel</Button>
+                <Button onClick={() => setIsCreatingPlaylist(false)}>Cancel</Button>
                 <CreatePlaylist setIsCreatingPlaylist={setIsCreatingPlaylist} spotify={spotify} />
             </>
             }
@@ -83,9 +85,9 @@ const Playlists = ({ spotify }) => {
 
 const PlaylistItem = (props) => {
     return (
-        <Card onClick={() => props.clickHandler(props.data.id)} style={{backgroundColor: '#764abc', color: '#ffffff', cursor: 'pointer', flexDirection: 'row'}}>
+        <Card className='playlist-item' onClick={() => props.clickHandler(props.data.id)}>
             <Card.Img 
-                variant='top' 
+                variant='top'
                 src={props.data.images.length ? props.data.images[0].url : playlistCover}
                 style={{ height: '100px', width: '100px'}}
             />
@@ -99,14 +101,18 @@ const PlaylistItem = (props) => {
 
 const TrackItem = (props) => {
     return (
-        <Card style={{backgroundColor: '#764abc', color: '#ffffff', flexDirection: 'row'}}>
-             <Card.Img variant='top' src={props.data.track.album.images[0].url} style={{ height: '100px', width: '100px'}} />
+        <Card className='track-item'>
+             <Card.Img 
+                variant='top' 
+                src={props.data.track.album.images[0].url}
+                style={{ height: '100px', width: '100px'}}
+             />
             <Card.Body>
                 <Card.Title>{props.data.track.name}</Card.Title>
                 <Card.Subtitle>{props.data.track.artists.map((artist => artist.name + " "))}</Card.Subtitle>
             </Card.Body>
         </Card>
     );
-}
+};
 
 export default Playlists;

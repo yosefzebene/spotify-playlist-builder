@@ -1,0 +1,37 @@
+.songs-box {
+    padding: 10px 0;
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+}
+
+@media  only screen and (max-width:767px) {
+    .songs-box {
+        height: calc(50vh - 28px);
+    }
+}
+
+
+.songs-box button {
+    background-color: #a663db;
+}
+
+.songs-box button:hover {
+    background-color: #8b52b6;
+    transition-duration: 300ms;
+}
+
+.songs-box .vstack {
+    padding: 10px 0;
+}
+
+.songs-box .card {
+    background-color: #764abc;
+    color: #ffffff;
+    flex-direction: row;
+}
+
+.songs-box .card:hover {
+    background-color: #8a57dd;
+    transition-duration: 300ms;
+    cursor: pointer;
+}

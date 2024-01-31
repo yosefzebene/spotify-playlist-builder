@@ -1,0 +1,42 @@
+.playlists-box {
+    padding: 10px 0;
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+}
+
+@media  only screen and (max-width:767px) {
+    .playlists-box {
+        height: calc(50vh - 38px);
+        margin-bottom: 10px;
+    }
+}
+
+.playlists-box .vstack {
+    padding: 10px 0;
+}
+
+.playlists-box button {
+    background-color: #a663db;
+}
+
+.playlists-box button:hover {
+    background-color: #8b52b6;
+    transition-duration: 300ms;
+}
+
+.playlists-box .card {
+    background-color: #764abc;
+    color: #ffffff;
+    flex-direction: row;
+}
+
+.playlist-item:hover {
+    background-color: #8a57dd;
+    transition-duration: 300ms;
+    cursor: pointer;
+}
+
+.playlist-create-form {
+    color: #ffffff;
+    margin: 150px 50px;
+}

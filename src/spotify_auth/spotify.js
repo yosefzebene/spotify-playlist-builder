@@ -3,7 +3,7 @@ const redirectUri = process.env.REACT_APP_REDIRECT_URI;
 
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 const tokenEndpoint = 'https://accounts.spotify.com/api/token';
-const scope = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
+const scope = 'playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-top-read';
 
 // Data structure that manages the current active token, caching it in localStorage
 export const currentToken = {

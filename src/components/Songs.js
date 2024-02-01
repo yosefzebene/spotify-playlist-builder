@@ -1,58 +1,36 @@
-import Card from 'react-bootstrap/Card';
+import './Songs.css';
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import playlistCover from '../assets/playlistCover.jpg';
-import './Songs.css';
+import TrackItem from './TrackItem.js';
+import { useEffect, useState } from 'react';
 
 const Songs = ({ spotify }) => {
+    const [recommendedTracks, setRecommendedTracks] = useState([]);
+
+    useEffect(() => {
+        const getRecommendationsBasedOnTopArtists = async () => {
+            const response = await spotify.getMyTopArtists({ limit: 5 });
+
+            const topArtists = response.items.map(item => item.id);
+
+            const options = { seed_artists: topArtists.toString() };
+            const recommendations = await spotify.getRecommendations(options);
+
+            setRecommendedTracks(recommendations.tracks);
+        };
+
+        getRecommendationsBasedOnTopArtists();
+    }, [spotify]);
+ 
     return (
         <div className='songs-box'>
             <Button>Recommended</Button>
             <Stack gap={2}>
-                <Card>
-                    <Card.Img 
-                        variant='top' 
-                        src={playlistCover}
-                        style={{ height: '100px', width: '100px'}}
-                    />
-                    <Card.Body>
-                        <Card.Title>Song Title</Card.Title>
-                        <Card.Subtitle><b>Artist</b> . Length</Card.Subtitle>
-                    </Card.Body>
-                </Card>
-                <Card>
-                    <Card.Img 
-                        variant='top' 
-                        src={playlistCover}
-                        style={{ height: '100px', width: '100px'}}
-                    />
-                    <Card.Body>
-                        <Card.Title>Song Title</Card.Title>
-                        <Card.Subtitle><b>Artist</b> . Length</Card.Subtitle>
-                    </Card.Body>
-                </Card>
-                <Card>
-                    <Card.Img 
-                        variant='top' 
-                        src={playlistCover}
-                        style={{ height: '100px', width: '100px'}}
-                    />
-                    <Card.Body>
-                        <Card.Title>Song Title</Card.Title>
-                        <Card.Subtitle><b>Artist</b> . Length</Card.Subtitle>
-                    </Card.Body>
-                </Card>
-                <Card>
-                    <Card.Img 
-                        variant='top' 
-                        src={playlistCover}
-                        style={{ height: '100px', width: '100px'}}
-                    />
-                    <Card.Body>
-                        <Card.Title>Song Title</Card.Title>
-                        <Card.Subtitle><b>Artist</b> . Length</Card.Subtitle>
-                    </Card.Body>
-                </Card>
+                {
+                    recommendedTracks.map(track => {
+                        return <TrackItem key={track.id} data={track}/>
+                    })
+                }
             </Stack>
         </div>
     );

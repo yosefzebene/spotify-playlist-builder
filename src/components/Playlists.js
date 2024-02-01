@@ -1,9 +1,9 @@
 import Stack from 'react-bootstrap/Stack';
-import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import playlistCover from '../assets/playlistCover.jpg';
 import CreatePlaylist from './Forms/CreatePlaylist';
+import TrackItem from './TrackItem.js';
+import PlaylistItem from './PlaylistItem.js';
 import './Playlists.css';
 
 const Playlists = ({ spotify }) => {
@@ -80,38 +80,6 @@ const Playlists = ({ spotify }) => {
             </>
             }
         </div>
-    );
-};
-
-const PlaylistItem = (props) => {
-    return (
-        <Card className='playlist-item' onClick={() => props.clickHandler(props.data.id)}>
-            <Card.Img 
-                variant='top'
-                src={props.data.images.length ? props.data.images[0].url : playlistCover}
-                style={{ height: '100px', width: '100px'}}
-            />
-            <Card.Body>
-                <Card.Title>{props.data.name}</Card.Title>
-                <Card.Subtitle><b>{props.data.owner.display_name}</b> . {props.data.tracks.total} songs</Card.Subtitle>
-            </Card.Body>
-        </Card>
-    );
-};
-
-const TrackItem = (props) => {
-    return (
-        <Card className='track-item'>
-             <Card.Img 
-                variant='top' 
-                src={props.data.track.album.images[0].url}
-                style={{ height: '100px', width: '100px'}}
-             />
-            <Card.Body>
-                <Card.Title>{props.data.track.name}</Card.Title>
-                <Card.Subtitle>{props.data.track.artists.map((artist => artist.name + " "))}</Card.Subtitle>
-            </Card.Body>
-        </Card>
     );
 };
 

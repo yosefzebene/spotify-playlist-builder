@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const Songs = ({ spotify, selectedPlaylist }) => {
+const Songs = ({ spotify, onAddTrackClick }) => {
     const [recommendedTracks, setRecommendedTracks] = useState([]);
 
     useEffect(() => {
@@ -23,18 +23,6 @@ const Songs = ({ spotify, selectedPlaylist }) => {
 
         getRecommendationsBasedOnTopArtists();
     }, [spotify]);
-
-    const onAddTrackClick = (trackUri) => {
-        if (!selectedPlaylist) {
-            // Tell users to select a playlist first
-            console.log("Select a playlist!");
-            alert("Select a playlist!");
-        }
-        else {
-            spotify.addTracksToPlaylist(selectedPlaylist, [ trackUri ]);
-            //Figure out how to make playlists refresh.
-        }
-    }
  
     return (
         <Container className='songs-box' >
@@ -44,7 +32,7 @@ const Songs = ({ spotify, selectedPlaylist }) => {
                     recommendedTracks.map(track => {
                         return (
                             <Col xs={6} sm={4} md={4} lg={3} className='songs-column' key={track.id}>
-                                <TrackItem data={track} addClickHandler={onAddTrackClick} />
+                                <TrackItem data={track} onAddTrackClick={onAddTrackClick} />
                             </Col>)
                     })
                 }

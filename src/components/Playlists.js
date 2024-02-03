@@ -6,9 +6,8 @@ import TrackItem from './TrackItem.js';
 import PlaylistItem from './PlaylistItem.js';
 import './Playlists.css';
 
-const Playlists = ({ spotify, selectedPlaylist, setSelectedPlaylist }) => {
+const Playlists = ({ spotify, tracks, getPlaylistTracks, onRemoveTrackClick, setSelectedPlaylist }) => {
     const [playlists, setPlaylists] = useState([]);
-    const [tracks, setTracks] = useState([]);
     const [displayingTracks, setDisplayingTracks] = useState(false);
     const [isCreatingPlaylist, setIsCreatingPlaylist] = useState(false);
 
@@ -29,43 +28,22 @@ const Playlists = ({ spotify, selectedPlaylist, setSelectedPlaylist }) => {
         getUserPlaylists();
     }, [spotify, displayingTracks, isCreatingPlaylist]);
 
-    const getPlaylistTracks = async (id) => {
-        const allTracks = [];
-
-        var playlistTracks = await spotify.getPlaylistTracks(id);
-        allTracks.push(...playlistTracks.items);
-
-        while (playlistTracks.next) {
-            playlistTracks = await spotify.getGeneric(playlistTracks.next);
-            allTracks.push(...playlistTracks.items);
-        }
-
-        setTracks(allTracks);
-    };
-
     const onPlaylistClick = (id) => {
-        // Set a state on the parent component that shows which playlist id was selected.
-        getPlaylistTracks(id);
         setDisplayingTracks(true);
+        getPlaylistTracks(id);
         setSelectedPlaylist(id);
     };
 
-    const onRemoveTrackClick = async (trackUri) => {
-        await spotify.removeTracksFromPlaylist(selectedPlaylist, [trackUri]);
-        getPlaylistTracks(selectedPlaylist);
-    }
-
     return (
-        // Height needs to be 50vh for mobile
         <div className='playlists-box'>
             {!isCreatingPlaylist ?
             <>
                 {
                     displayingTracks ? 
                     <Button 
-                    onClick={() => { 
-                        setDisplayingTracks(false); 
-                        setSelectedPlaylist('');
+                        onClick={() => { 
+                            setDisplayingTracks(false); 
+                            setSelectedPlaylist('');
                     }}>
                         Back
                     </Button>
@@ -76,7 +54,7 @@ const Playlists = ({ spotify, selectedPlaylist, setSelectedPlaylist }) => {
                     {
                         displayingTracks ?
                         tracks.map(item => {
-                            return <TrackItem key={item.track.id} data={item} removeClickHandler={onRemoveTrackClick}/>
+                            return <TrackItem key={item.track.id} data={item} onRemoveTrackClick={onRemoveTrackClick}/>
                         })
                         :
                         playlists.map(playlist => {

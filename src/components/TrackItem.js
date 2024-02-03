@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './TrackItem.css';
 
-const TrackItem = ({ data, addClickHandler, removeClickHandler }) => {
+const TrackItem = ({ data, onAddTrackClick, onRemoveTrackClick }) => {
     return (
         <Card className='track-item'>
              <Card.Img 
@@ -18,9 +18,9 @@ const TrackItem = ({ data, addClickHandler, removeClickHandler }) => {
                 </Card.Subtitle>
             </Card.Body>
             {data.track ?
-                <Button className='remove-button' onClick={() => removeClickHandler(data.track.uri)}>Remove</Button>
+                <Button className='remove-button' onClick={() => onRemoveTrackClick(data.track.uri)}>Remove</Button>
                 :
-                <Button className='add-button' onClick={() => addClickHandler(data.uri)}>Add</Button>
+                <Button className='add-button' onClick={() => onAddTrackClick(data.uri)}>Add</Button>
             }
         </Card>
     );

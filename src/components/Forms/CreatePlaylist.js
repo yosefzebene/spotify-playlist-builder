@@ -48,7 +48,7 @@ const CreatePlaylist = ({spotify, setIsCreatingPlaylist}) => {
                     onChange={(e) => setPublicPlaylist(e.target.checked)}
                 />
                 {
-                    publicPlaylist && 
+                    !publicPlaylist &&
                     <Form.Check 
                         type="checkbox" 
                         label="Collaborative"

@@ -6,32 +6,48 @@
 
 @media  only screen and (max-width:767px) {
     .playlists-box {
-        height: calc(50vh - 38px);
+        height: calc(40vh - 38px);
         margin-bottom: 10px;
     }
 }
 
-.playlists-box .vstack {
-    padding: 10px 0;
-}
-
 .playlists-box button {
-    background-color: #a663db;
+    color: #212227;
+    font-weight: 700;
+    background-color: #E9D6EC;
+    transition: background-color 0.3s;
 }
 
-.playlists-box button:hover {
-    background-color: #8b52b6;
-    transition-duration: 300ms;
+.playlists-box button:hover, .playlists-box button:active, .playlists-box button:focus {
+    color: #212227;
+    background-color: #e5c3ea;
+}
+
+.playlists-box .remove-button {
+    color: #E9D6EC;
+    background-color: #8c72b4;
+    border: none;
+    border-radius: 0 8px 8px 0;
+}
+
+.playlists-box .remove-button:hover, .playlists-box .remove-button:active, .playlists-box .remove-button:focus {
+    color: #E9D6EC;
+    background-color: #937dba;
 }
 
 .playlists-box .card {
-    background-color: #764abc;
-    color: #ffffff;
+    background-color: #8364B5;
+    color: #E9D6EC;
+    border-width: 0;
     flex-direction: row;
 }
 
+.playlists-box .card-body {
+    min-width: 0;
+}
+
 .playlist-item:hover {
-    background-color: #8a57dd;
+    background-color: #7d59b6;
     transition-duration: 300ms;
     cursor: pointer;
 }
@@ -39,4 +55,9 @@
 .playlist-create-form {
     color: #ffffff;
     margin: 150px 50px;
+}
+
+.playlists-box .track-item img {
+    height: 100px;
+    width: 100px;
 }

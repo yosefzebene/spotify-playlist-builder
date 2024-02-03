@@ -1,37 +1,47 @@
 .songs-box {
-    padding: 10px 0;
+    padding: 10px 0 !important;
     height: calc(100vh - 56px);
     overflow-y: scroll;
 }
 
-@media  only screen and (max-width:767px) {
-    .songs-box {
-        height: calc(50vh - 28px);
-    }
+.songs-box .row {
+    width: 100%;
 }
 
-
-.songs-box button {
-    background-color: #a663db;
-}
-
-.songs-box button:hover {
-    background-color: #8b52b6;
-    transition-duration: 300ms;
-}
-
-.songs-box .vstack {
+.songs-column {
     padding: 10px 0;
 }
 
-.songs-box .card {
-    background-color: #764abc;
-    color: #ffffff;
-    flex-direction: row;
+@media  only screen and (max-width:767px) {
+    .songs-box {
+        height: calc(60vh - 28px);
+    }
 }
 
-.songs-box .card:hover {
-    background-color: #8a57dd;
+.songs-box button {
+    color: #E9D6EC;
+    font-weight: 700;
+    background-color: #212227;
+}
+
+.songs-box button:hover, .songs-box button:active, .songs-box button:focus {
+    color: #E9D6EC;
+    background-color: #3e4041;
     transition-duration: 300ms;
-    cursor: pointer;
+}
+
+.songs-box .add-button {
+    background-color: #42444e;
+    border: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.songs-box .add-button:hover, .songs-box .add-button:active, .songs-box .add-button:focus {
+    background-color: #696c7b;
+}
+
+.songs-box .card {
+    background-color: #212227;
+    color: #E9D6EC;
+    border-width: 0;
 }

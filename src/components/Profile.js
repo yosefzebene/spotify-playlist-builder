@@ -17,16 +17,16 @@ const Profile = ({ spotify }) => {
     }, [spotify])
 
     return (
-        <Navbar data-bs-theme="dark" style={{backgroundColor: '#764abc', height: '56px'}}>
+        <Navbar data-bs-theme="dark" style={{backgroundColor: '#EAF4D3', height: '56px'}}>
             <Container>
-                <Navbar.Brand>Playlist Builder</Navbar.Brand>
-                <Navbar.Text className="justify-content-end" style={{ color: '#ffffff', padding: '0'}}>
+                <Navbar.Brand style={{ color: '#212227' }}>Playlist Builder</Navbar.Brand>
+                <Navbar.Text className="justify-content-end" style={{ color: '#212227', padding: '0'}}>
                     <Image
                         alt="Profile"
                         src={user.images? user.images[0].url : avatar}
                         width="35"
                         height="35"
-                        style={{marginRight: '10px', objectFit: 'cover'}}
+                        style={{marginRight: '10px', objectFit: 'cover', border: '2px solid #212227'}}
                         roundedCircle
                     />
                     <b>{user.display_name}</b>

@@ -1,0 +1,4 @@
+.track-item .card-title, .track-item .card-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+}

@@ -1,10 +1,12 @@
 import './Songs.css';
-import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import TrackItem from './TrackItem.js';
 import { useEffect, useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-const Songs = ({ spotify }) => {
+const Songs = ({ spotify, selectedPlaylist }) => {
     const [recommendedTracks, setRecommendedTracks] = useState([]);
 
     useEffect(() => {
@@ -21,18 +23,33 @@ const Songs = ({ spotify }) => {
 
         getRecommendationsBasedOnTopArtists();
     }, [spotify]);
+
+    const onAddTrackClick = (trackUri) => {
+        if (!selectedPlaylist) {
+            // Tell users to select a playlist first
+            console.log("Select a playlist!");
+            alert("Select a playlist!");
+        }
+        else {
+            spotify.addTracksToPlaylist(selectedPlaylist, [ trackUri ]);
+            //Figure out how to make playlists refresh.
+        }
+    }
  
     return (
-        <div className='songs-box'>
+        <Container className='songs-box' >
             <Button>Recommended</Button>
-            <Stack gap={2}>
+            <Row>
                 {
                     recommendedTracks.map(track => {
-                        return <TrackItem key={track.id} data={track}/>
+                        return (
+                            <Col xs={6} sm={4} md={4} lg={3} className='songs-column' key={track.id}>
+                                <TrackItem data={track} addClickHandler={onAddTrackClick} />
+                            </Col>)
                     })
                 }
-            </Stack>
-        </div>
+            </Row>
+        </Container>
     );
 };
 

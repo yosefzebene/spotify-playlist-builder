@@ -54,10 +54,17 @@
 
 .playlist-create-form {
     color: #ffffff;
-    margin: 150px 50px;
+    margin: 10% 10%;
 }
 
 .playlists-box .track-item img {
     height: 100px;
     width: 100px;
+}
+
+.homepage-alert { 
+    padding: 10px !important;
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
+    font-weight: 700;
 }

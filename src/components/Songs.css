@@ -1,5 +1,5 @@
 .songs-box {
-    padding: 10px 0 !important;
+    padding: 10px 0 10px 12px !important;
     height: calc(100vh - 56px);
     overflow-y: scroll;
 }
@@ -9,7 +9,7 @@
 }
 
 .songs-column {
-    padding: 10px 0;
+    padding: 10px 10px;
 }
 
 @media  only screen and (max-width:767px) {
@@ -36,7 +36,8 @@
     border-radius: 0 0 8px 8px;
 }
 
-.songs-box .add-button:hover, .songs-box .add-button:active, .songs-box .add-button:focus {
+
+.songs-box .add-button:focus, .songs-box .add-button:hover, .songs-box .add-button:active {
     background-color: #696c7b;
 }
 
@@ -45,4 +46,13 @@
     color: #E9D6EC;
     border-width: 0;
     height: 100%;
+}
+
+.generate-songs-form {
+    margin: 10% 10%;
+}
+
+.generate-songs-form .alert {
+    background-color: #212227;
+    color: #E9D6EC;
 }

@@ -10,6 +10,7 @@ import { useState } from 'react';
 const spotify = new SpotifyWebApi();
 
 const HomePage = ({ spotifyToken }) => {
+
     const [tracks, setTracks] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
 
@@ -34,14 +35,22 @@ const HomePage = ({ spotifyToken }) => {
             alert("Select a playlist!");
         }
         else {
-            await spotify.addTracksToPlaylist(selectedPlaylist, [trackUri]);
-            getPlaylistTracks(selectedPlaylist);
+            try {
+                await spotify.addTracksToPlaylist(selectedPlaylist, [trackUri]);
+                getPlaylistTracks(selectedPlaylist);
+            } catch (e) {
+                alert(e.response);
+            }
         }
     };
 
     const onRemoveTrackClick = async (trackUri) => {
-        await spotify.removeTracksFromPlaylist(selectedPlaylist, [trackUri]);
-        getPlaylistTracks(selectedPlaylist);
+        try {
+            await spotify.removeTracksFromPlaylist(selectedPlaylist, [trackUri]);
+            getPlaylistTracks(selectedPlaylist);
+        } catch (e) {
+            alert(e.response);
+        }
     };
 
     return (
@@ -58,7 +67,7 @@ const HomePage = ({ spotifyToken }) => {
                         onRemoveTrackClick={onRemoveTrackClick}
                         setSelectedPlaylist={setSelectedPlaylist} />
                 </Col>
-                <Col sm={12} md={8} lg={8} style={{backgroundColor: '#E9D6EC', paddingRight: '0'}}>
+                <Col sm={12} md={8} lg={8} style={{backgroundColor: '#E9D6EC', padding: '0'}}>
                     <Songs
                         spotify={spotify}
                         onAddTrackClick={onAddTrackClick} />

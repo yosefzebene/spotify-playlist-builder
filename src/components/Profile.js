@@ -23,7 +23,7 @@ const Profile = ({ spotify }) => {
                 <Navbar.Text className="justify-content-end" style={{ color: '#212227', padding: '0'}}>
                     <Image
                         alt="Profile"
-                        src={user.images? user.images[0].url : avatar}
+                        src={user.images?.length ? user.images[0].url : avatar}
                         width="35"
                         height="35"
                         style={{marginRight: '10px', objectFit: 'cover', border: '2px solid #212227'}}

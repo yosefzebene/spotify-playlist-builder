@@ -23,6 +23,10 @@ const Songs = ({ spotify, onAddTrackClick }) => {
                 limit: 100,
                 seed_artists: topArtists.toString(),
             };
+
+            if (!topArtists.length)
+                options.seed_genres = 'acoustic';
+
             const recommendations = await spotify.getRecommendations(options);
 
             setRecommendedTracks(recommendations.tracks);

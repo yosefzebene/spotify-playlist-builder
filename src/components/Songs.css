@@ -56,3 +56,10 @@
     background-color: #212227;
     color: #E9D6EC;
 }
+
+.songs-box .search-bar, .songs-box .search-bar:focus {
+    background-color: #fceffe;
+    color: #212227 ;
+    border: 2px solid #212227;
+    box-shadow: none;
+}

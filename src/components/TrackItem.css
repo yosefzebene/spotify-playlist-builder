@@ -1,12 +1,13 @@
 .track-item .card-title, .track-item .card-subtitle {
-    white-space: nowrap;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: color 0.2s;
 }
 
 .track-item .card-title:hover {
     color: #baa6bd;
     cursor: pointer;
-    transition-duration: 200ms;
 }
 
 .preview-player {

@@ -11,7 +11,7 @@ const spotify = new SpotifyWebApi();
 
 const HomePage = ({ spotifyToken }) => {
 
-    const [tracks, setTracks] = useState([]);
+    const [playlistTracks, setPlaylistTracks] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
 
     spotify.setAccessToken(spotifyToken);
@@ -19,18 +19,24 @@ const HomePage = ({ spotifyToken }) => {
     const getPlaylistTracks = async (id) => {
         const allTracks = [];
 
-        var playlistTracks = await spotify.getPlaylistTracks(id);
-        allTracks.push(...playlistTracks.items);
+        var tracks = await spotify.getPlaylistTracks(id);
+        allTracks.push(...tracks.items);
 
-        while (playlistTracks.next) {
-            playlistTracks = await spotify.getGeneric(playlistTracks.next);
-            allTracks.push(...playlistTracks.items);
+        while (tracks.next) {
+            tracks = await spotify.getGeneric(tracks.next);
+            allTracks.push(...tracks.items);
         }
 
-        setTracks(allTracks);
+        setPlaylistTracks(allTracks);
     };
 
-    const onAddTrackClick = async (trackUri) => {
+    const onAddTrackClick = async (trackUri, trackId) => {
+        // Check if track is already in playlist
+        if (playlistTracks.find(item => item.track.id === trackId)) {
+            alert("Track is already in the playlist");
+            return;
+        }
+
         if (!selectedPlaylist) {
             alert("Select a playlist!");
         }
@@ -62,7 +68,7 @@ const HomePage = ({ spotifyToken }) => {
                 <Col sm={12} md={4} lg={4} style={{backgroundColor: '#212227'}}>
                     <Playlists
                         spotify={spotify}
-                        tracks={tracks}
+                        tracks={playlistTracks}
                         getPlaylistTracks={getPlaylistTracks}
                         onRemoveTrackClick={onRemoveTrackClick}
                         setSelectedPlaylist={setSelectedPlaylist} />

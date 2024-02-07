@@ -17,8 +17,8 @@ const TrackItem = ({ data, onAddTrackClick, onRemoveTrackClick }) => {
                 </Card.Title>
                 <Card.Subtitle>
                 {data.track ? 
-                    data.track.artists.map(artist => artist.name + " ") :
-                    data.artists.map(artist => artist.name + " ")}
+                    data.track.artists.map(artist => " " + artist.name).toString() :
+                    data.artists.map(artist => " " + artist.name).toString()}
                 </Card.Subtitle>
                 { data.preview_url &&
                     <audio className='preview-player' controls controlsList="nodownload" src={data.preview_url}></audio>
@@ -27,7 +27,7 @@ const TrackItem = ({ data, onAddTrackClick, onRemoveTrackClick }) => {
             {data.track ?
                 <Button className='remove-button' onClick={() => onRemoveTrackClick(data.track.uri)}>Remove</Button>
                 :
-                <Button className='add-button' onClick={() => onAddTrackClick(data.uri)}>Add</Button>
+                <Button className='add-button' onClick={() => onAddTrackClick(data.uri, data.id)}>Add</Button>
             }
         </Card>
     );

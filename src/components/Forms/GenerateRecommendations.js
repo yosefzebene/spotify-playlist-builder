@@ -6,12 +6,6 @@ import AsyncSelect from 'react-select/async';
 import { useState, useEffect } from 'react';
 
 const GenerateRecommendations = ({ spotify, handleGenerateClick }) => {
-    // The recommended song form will take in a 3 field
-    // seed genres - drop down box populated from "Get Available Genre Seeds" endpoint
-    // seed track - maybe the form can take in a spotify link to the track and I will request for the id?
-    // seed artist - maybe a small search box so the user can select from the results. This could work for the seed tracks too.
-    // Advanced settings
-    // Allow for more advanced specification using some of the more advanced filters like energy level, instrumentalness, liveness, danceability...
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
 

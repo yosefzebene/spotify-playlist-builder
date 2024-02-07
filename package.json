@@ -1,6 +1,7 @@
 {
   "name": "spotify-playlist-builder",
   "version": "0.1.0",
+  "author": "Yosef Zebene",
   "homepage": "https://yosefzebene.github.io/spotify-playlist-builder/",
   "private": true,
   "dependencies": {

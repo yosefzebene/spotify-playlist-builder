@@ -1,8 +1,8 @@
 import './App.css';
-import { getToken, currentToken, redirectToSpotifyAuthorize, getRefreshToken } from './spotify_auth/spotify';
+import { getToken, currentToken, getRefreshToken } from './spotify_auth/spotify';
 import { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
 import HomePage from './components/HomePage.js';
+import Login from './components/Login.js';
 
 function App() {
   const [spotifyToken, setSpotifyToken] = useState('');
@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="App">
       { spotifyToken ? 
-        <HomePage spotifyToken={spotifyToken} /> : <Button onClick={redirectToSpotifyAuthorize}>Sign in with spotify!</Button>
+        <HomePage spotifyToken={spotifyToken} /> : <Login />
       }
     </div>
   );
